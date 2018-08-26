@@ -42,7 +42,7 @@ for i in range(2005, 2017):
     getAuthorsFromVenue("sosp", str(i), "SOSP")
     getAuthorsFromVenue("imc", str(i), "IMC")
     getAuthorsFromVenue("hotnets", str(i), "HotNets")
-    getAuthorsFromVenue("infocom", str(i), "INFOCOM")
+    #getAuthorsFromVenue("infocom", str(i), "INFOCOM")
     getAuthorsFromVenue("conext", str(i), "CoNEXT")
     getAuthorsFromVenue("sigmetrics", str(i), "SIGMETRICS")
 
@@ -59,11 +59,12 @@ def getAcademicLifePartners(people, totalpapers):
                 partnership[i][j] = 0
     for i in people:
         for j in people:
-            for k in totalpapers:
-                if i in k and j in k and i != j:
-                    partnership[i][j] += 1
-                    if partnership[i][j] > 4:
-                        print i, j, partnership[i][j]
+            if i != j:
+                for k in totalpapers:
+                    if i in k and j in k:
+                        partnership[i][j] += 1
+                        if partnership[i][j] > 4:
+                            print i, j, partnership[i][j]
     return partnership
 
 x = getAcademicLifePartners(people, totalpapers)
